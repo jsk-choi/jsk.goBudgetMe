@@ -9,7 +9,7 @@ namespace jsk.goBudgetMe.Services
 {
     public interface ITransactionService
     {
-        Task<IEnumerable<Transaction>> GetAsync(DateTime? startDate, DateTime? endDate);
+        Task<IEnumerable<TransactionDto>> GetAsync(DateTime? startDate, DateTime? endDate);
         Task<Transaction> GetItemAsync(string UniqueId);
         Task<Transaction> DeleteAsync(string UniqueId);
         Task<Transaction> AddUpdateAsync(Transaction Transaction);

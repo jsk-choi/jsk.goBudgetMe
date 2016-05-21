@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Dev";
+}
+
+<style>
+    .commentForm {
+        border: 1px solid green;
+    }
+
+    .commentList {
+        border: 1px solid red;
+    }
+
+    .transaction {
+        margin: 5px;
+        border-collapse: collapse;
+    }
+    .transaction td {
+        padding: 5px;
+        border: 1px solid gray;
+    }
+
+        .transaction:hover {
+            background-color:#eb9c9c;
+        }
+</style>
+
+<h1>dev</h1>
+
+<div id="content"></div>
+
+<script src="@Url.Content("~/lib/jquery/dist/jquery.min.js")"></script>
+<script src="@Url.Content("~/lib/react/react.min.js")"></script>
+<script src="@Url.Content("~/lib/react/react-dom.min.js")"></script>
+<script src="@Url.Content("~/lib/showdown/dist/showdown.js")"></script>
+<script src="@Url.Content("~/js/Tutorial.js")"></script>

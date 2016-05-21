@@ -36,22 +36,10 @@ namespace jsk.goBudgetMe.Controllers
             _mapper = mapper;
         }
 
-        public JsonResult Durr()
+        public async Task<IActionResult> Index()
         {
-            var oooop = User.Identity.Name;
-            var myUser = _userManager.FindByNameAsync(oooop).Result;
-
-            var sDate = DateTime.Now.AddDays(-100);
-            var eDate = DateTime.Now.AddDays(100);
-            var trans = _transactionService.GetAsync(startDate: sDate, endDate: eDate);
-
-            var viewModel = _mapper.Map<IEnumerable<TransactionDto>>(trans.Result);
-            return new JsonResult(viewModel);
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            var tran = await _transactionService.GetAsync(DateTime.MinValue, DateTime.MaxValue);
+            return View(tran.ToList());
         }
 
 

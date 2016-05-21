@@ -1,45 +1,87 @@
-﻿/// <binding Clean='clean' />
-"use strict";
+﻿/// <binding />
+// Include gulp
+var gulp = require('gulp');
 
-var gulp = require("gulp"),
-    rimraf = require("rimraf"),
-    concat = require("gulp-concat"),
-    cssmin = require("gulp-cssmin"),
-    uglify = require("gulp-uglify");
-
-var paths = {
+// Paths
+var path = {
     webroot: "./wwwroot/"
 };
 
-paths.js = paths.webroot + "js/**/*.js";
-paths.minJs = paths.webroot + "js/**/*.min.js";
-paths.css = paths.webroot + "css/**/*.css";
-paths.minCss = paths.webroot + "css/**/*.min.css";
-paths.concatJsDest = paths.webroot + "js/site.min.js";
-paths.concatCssDest = paths.webroot + "css/site.min.css";
+path.js = path.webroot + "js/**/*.js";
+path.jsx = path.js + "x";
+path.jsDest = path.webroot + "js/";
+path.minJs = path.webroot + "js/**/*.min.js";
+path.css = path.webroot + "css/**/*.css";
+path.minCss = path.webroot + "css/**/*.min.css";
+path.concatJsDest = path.webroot + "js/site.min.js";
+path.concatCssDest = path.webroot + "css/site.min.css";
 
-gulp.task("clean:js", function (cb) {
-    rimraf(paths.concatJsDest, cb);
+// Include Our Plugins
+var jshint = require('gulp-jshint'),
+	babel = require('gulp-babel'),
+	concat = require('gulp-concat'),
+	rename = require('gulp-rename'),
+	//sass = require('gulp-sass'),
+	uglify = require('gulp-uglify');
+
+gulp.task("react", function () {
+    return gulp.src(path.jsx)
+        .pipe(babel({
+            plugins: ['transform-react-jsx']
+        })).
+        pipe(gulp.dest(path.jsDest));
 });
 
-gulp.task("clean:css", function (cb) {
-    rimraf(paths.concatCssDest, cb);
+// Lint Task
+gulp.task('lint', function () {
+    return gulp.src(path.js)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
-gulp.task("clean", ["clean:js", "clean:css"]);
-
-gulp.task("min:js", function () {
-    return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-        .pipe(concat(paths.concatJsDest))
+// Concatenate & Minify JS
+gulp.task('scripts', function () {
+    return gulp.src(path.js)
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('dist'))
+        .pipe(rename('all.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest("."));
+        .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task("min:css", function () {
-    return gulp.src([paths.css, "!" + paths.minCss])
-        .pipe(concat(paths.concatCssDest))
-        .pipe(cssmin())
-        .pipe(gulp.dest("."));
+// Watch Files For Changes
+gulp.task('watch', function () {
+    gulp.watch(path.jsx, ['react']);
+    gulp.watch(path.js, ['lint', 'scripts']);
+    //gulp.watch('scss/*.scss', ['sass']);
 });
 
-gulp.task("min", ["min:js", "min:css"]);
+// Default Task
+gulp.task('default', ['react', 'lint', 'scripts', 'watch']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Compile Our Sass
+gulp.task('sass', function() {
+    return gulp.src('scss/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('dist/css'));
+});
+*/

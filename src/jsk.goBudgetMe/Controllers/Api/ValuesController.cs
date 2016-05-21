@@ -38,6 +38,32 @@ namespace jsk.goBudgetMe.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTransactions(DateTime startDate, DateTime endDate)
         {
+            //var _comments = new List<CommentModel>
+            //{
+            //    new CommentModel
+            //    {
+            //        Author = "Daniel Lo Nigro",
+            //        Text = "Hello ReactJS.NET World!"
+            //    },
+            //    new CommentModel
+            //    {
+            //        Author = "Pete Hunt",
+            //        Text = "This is one comment"
+            //    },
+            //    new CommentModel
+            //    {
+            //        Author = "Jordan Walke",
+            //        Text = "This is *another* comment"
+            //    },
+            //    new CommentModel
+            //    {
+            //        Author = "DURRFACE BIOTCH",
+            //        Text = ">This is *another* comment"
+            //    },
+            //};
+
+            //return Ok(_comments);
+
             if (!ModelState.IsValid)
                 return HttpBadRequest(ModelState);
 
@@ -166,4 +192,11 @@ namespace jsk.goBudgetMe.Controllers
         //    return _context.Transactions.Count(e => e.TransactionId == id) > 0;
         //}
     }
+
+    public class CommentModel
+    {
+        public string Author { get; set; }
+        public string Text { get; set; }
+    }
 }
+

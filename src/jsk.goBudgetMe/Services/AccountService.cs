@@ -14,7 +14,7 @@ namespace jsk.goBudgetMe.Services
     public class AccountService : IAccountService
     {
         private IHttpContextAccessor _httpContextAccessor;
-        private UserManager<ApplicationUser> _userManager;
+        public UserManager<ApplicationUser> _userManager;
         private ApplicationUser _currentUser;
         private string _currentUserName;
 

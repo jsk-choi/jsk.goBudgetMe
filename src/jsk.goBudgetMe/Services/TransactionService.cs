@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using jsk.goBudgetMe.Models;
+using Microsoft.Data.Entity;
+using System.Data.SqlClient;
 
 namespace jsk.goBudgetMe.Services
 {
@@ -13,48 +15,53 @@ namespace jsk.goBudgetMe.Services
         private readonly IAccountService _accountService;
         private readonly IUtil _util;
 
-        public TransactionService(ApplicationDbContext appCtx, IAccountService accountService, IUtil util)
+        public TransactionService(
+            ApplicationDbContext appCtx,
+            IAccountService accountService,
+            IUtil util)
         {
             _appCtx = appCtx;
             _accountService = accountService;
             _util = util;
         }
 
-        public async Task<IEnumerable<Transaction>> GetAsync(DateTime? startDate, DateTime? endDate)
+        public async Task<IEnumerable<TransactionDto>> GetAsync(DateTime? startDate, DateTime? endDate)
         {
             try
             {
                 var minDt = DateTime.MinValue;
-                IEnumerable<Transaction> trans;
+                IEnumerable<TransactionDto> trans = new List<TransactionDto>();
                 var User = _accountService.CurrentUser;
 
+                var sql = @"exec spGetTransaction @userId = {0}, @startDate = {1}, @endDate = {2};";
                 if (startDate != minDt && endDate != minDt)
                 {
-                    trans = _appCtx.Transactions.Where(
-                        x => x.User.Id == User.Id &&
-                        (x.TransactionDate >= startDate && x.TransactionDate <= endDate)
-                    );
+                    trans = _appCtx.TransactionDtos.FromSql(sql,
+                        _accountService.CurrentUser.Id,
+                        startDate,
+                        endDate);
                 }
                 else if (startDate != minDt)
                 {
-                    trans = _appCtx.Transactions.Where(
-                        x => x.User.Id == User.Id &&
-                        (x.TransactionDate >= startDate)
-                    );
+                    trans = _appCtx.TransactionDtos.FromSql(sql,
+                        _accountService.CurrentUser.Id,
+                        startDate,
+                        DateTime.MaxValue);
                 }
                 else if (endDate != minDt)
                 {
-                    trans = _appCtx.Transactions.Where(
-                        x => x.User.Id == User.Id &&
-                        (x.TransactionDate <= endDate)
-                    );
+                    trans = _appCtx.TransactionDtos.FromSql(sql,
+                        _accountService.CurrentUser.Id,
+                        DateTime.MinValue.AddYears(1900),
+                        endDate);
                 }
                 else {
-                    trans = _appCtx.Transactions.Where(
-                        x => x.User.Id == User.Id
-                    );
+                    trans = _appCtx.TransactionDtos.FromSql(sql,
+                        _accountService.CurrentUser.Id,
+                        DateTime.MinValue.AddYears(1900),
+                        DateTime.MaxValue);
                 }
-                return await Task.Run(() => trans);
+                return await Task.Run(() => trans.OrderBy(x => x.TransactionDate));
             }
             catch (Exception ex)
             {

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using jsk.goBudgetMe.Models;
 using jsk.goBudgetMe.Services;
+using jsk.goBudgetMe.Tests;
 
 using AutoMapper;
 
@@ -104,11 +105,9 @@ namespace jsk.goBudgetMe
             }
 
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
-
             app.UseIdentity();
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715

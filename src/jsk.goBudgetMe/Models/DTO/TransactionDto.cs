@@ -9,12 +9,13 @@ namespace jsk.goBudgetMe.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class TransactionDto {
-
+        [Key]
         public int TransactionId { get; set; }
         public string UniqueId { get; set; }
         public DateTime TransactionDate { get; set; }
         public string TransactionDesc { get; set; }
         public decimal Amount { get; set; }
         public bool Posted { get; set; }
+        public decimal Balance { get; set; }
     }
 }

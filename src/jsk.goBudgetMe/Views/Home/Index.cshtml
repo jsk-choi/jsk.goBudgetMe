@@ -1,8 +1,31 @@
-﻿@{
+﻿@model IList<jsk.goBudgetMe.Models.Transaction>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+<style>
+    table.transactions {
+
+    }
+    table.transactions td {
+        padding:5px 8px;
+    }
+</style>
+
+<table class="transactions table-bordered">
+    @foreach (var item in @Model)
+    {
+        <tr id="@item.UniqueId">
+            <td>@item.TransactionDate</td>
+            <td>@item.TransactionDesc</td>
+            <td>@item.Amount</td>
+        <td>@item.Posted</td>
+    </tr>
+    }
+</table>
+
+@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -107,4 +130,4 @@
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
         </ul>
     </div>
-</div>
+</div>*@

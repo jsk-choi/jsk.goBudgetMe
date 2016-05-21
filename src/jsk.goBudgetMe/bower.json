@@ -5,6 +5,8 @@
     "bootstrap": "3.3.5",
     "jquery": "2.1.4",
     "jquery-validation": "1.14.0",
-    "jquery-validation-unobtrusive": "3.2.4"
+    "jquery-validation-unobtrusive": "3.2.4",
+    "react": "15.0.2",
+    "showdown": "1.4.0"
   }
 }

@@ -1,4 +1,4 @@
-/// <reference path="~/_references.js" />
+﻿/// <reference path="~/_references.js" />
 
 var GbmApp = React.createClass({
     loadTranFromServer: function () {
@@ -17,7 +17,8 @@ var GbmApp = React.createClass({
             }.bind(this)
         });
     },
-    handleTransactionSubmit: function (tran) {},
+    handleTransactionSubmit: function (tran) {
+    },
     getInitialState: function () {
         return { data: [] };
     },
@@ -29,12 +30,23 @@ var GbmApp = React.createClass({
         this.loadTranFromServer();
     },
     render: function () {
-        return React.createElement(
-            'h1',
-            null,
-            'nopie'
+        return (
+            <h1>nopie</h1>
         );
     }
 });
 
-ReactDOM.render(React.createElement(GbmApp, { url: '/api/values', pollInterval: 5000 }), document.getElementById('content'));
+ReactDOM.render(
+    <GbmApp url="/api/values" pollInterval={5000} />,
+    document.getElementById('content')
+);
+
+
+
+
+
+
+
+
+
+
