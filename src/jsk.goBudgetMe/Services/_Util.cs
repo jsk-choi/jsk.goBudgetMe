@@ -8,6 +8,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 
 using jsk.goBudgetMe.Models;
+using System.Text;
 
 namespace jsk.goBudgetMe.Services
 {
@@ -17,7 +18,16 @@ namespace jsk.goBudgetMe.Services
         {
             get
             {
-                return Guid.NewGuid().ToString().Replace("-", "");
+                var len = 25;
+                char[] baseChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray();
+
+                var sb = new StringBuilder(len);
+                var _random = new Random();
+
+                for (int i = 0; i < len; i++)
+                    sb.Append(baseChars[_random.Next(baseChars.Length)]);
+
+                return sb.ToString();
             }
         }
     }

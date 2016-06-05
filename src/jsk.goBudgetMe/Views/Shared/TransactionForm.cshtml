@@ -1,0 +1,82 @@
+@model TransactionDto
+
+@{
+    bool isEdit = ViewContext.RouteData.Values["action"].ToString().ToLower() == "edit";
+    string calDate = Model == null ? DateTime.Now.ToString("yyyy-MM-dd") : Model.TransactionDate.ToString("yyyy-MM-dd");
+}
+
+<form asp-action="TransactionForm" style="margin-top:20px;">
+    <div class="form-horizontal">
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <input asp-for="TransactionId" type="hidden" />
+
+        <div class="form-group">
+            <label asp-for="TransactionDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5" style="padding:0;min-width:210px;">
+                    <input asp-for="TransactionDate"
+                           class="form-control"
+                           value="@(!isEdit ? DateTime.Now.ToString("M/d/yyyy h:mm tt") : Model.TransactionDate.ToString("M/d/yyyy h:mm tt") )" />
+                    <span asp-validation-for="TransactionDate" class="text-danger" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TransactionDesc" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TransactionDesc" class="form-control" />
+                <span asp-validation-for="TransactionDesc" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Amount" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger" />
+            </div>
+        </div>
+
+        @if (isEdit)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input asp-for="Posted" />
+                    <label asp-for="Posted"></label>
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2" style="min-width:210px;padding-left:13px;">
+                @if (isEdit)
+                {
+                    <input type="submit" value="Edit" class="btn btn-default" style="padding:12px 30px;" />
+                    <br /><br />
+                    <a href="/delete/@Model.UniqueId" class="btn btn-danger">Delete</a>
+                }
+                else
+                {
+                    <input type="submit" value="Create" class="btn btn-default" />
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        $('#TransactionDate').datebox({
+            mode: "datebox",
+            popupPosition: "window"
+        }).trigger('datebox', {
+            'method': 'set', 'value': '@calDate',
+            'date': new Date('@calDate')
+        });
+
+        $('#TransactionDesc').focus();
+    })
+</script>
+
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }

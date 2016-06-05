@@ -1,13 +1,12 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 20px;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 35px 15px;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -21,14 +20,43 @@ textarea {
 .carousel-caption {
     z-index: 10 !important;
 }
-
     .carousel-caption p {
         font-size: 20px;
         line-height: 1.4;
     }
+
+.red {
+    border:1px solid red;
+}
+.green {
+    border:1px solid green;
+}
+.add-button {
+    margin-left:0;
+    padding-left:0;
+    font-size:2.5em;
+    color:#ee3d00;
+}
 
 @media (min-width: 768px) {
     .carousel-caption {
         z-index: 10 !important;
     }
 }
+
+.oauth-button {
+    width: 60px;
+    height: 60px;
+    background-repeat:no-repeat;
+    margin:2px 12px;
+    border:1px solid #eaeaea;
+}
+    .oauth-button:hover {
+    border:1px solid #878787;
+    }
+    .oauth-button.facebook {
+        background-image: url('../../images/oauth-facebook.png');
+    }
+    .oauth-button.google {
+        background-image: url('../../images/oauth-google.png');
+    }

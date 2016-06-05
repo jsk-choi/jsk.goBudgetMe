@@ -9,11 +9,16 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
+using Microsoft.AspNet.Authentication.Facebook;
+using Microsoft.AspNet.Authentication.Google;
+
 using jsk.goBudgetMe.Models;
 using jsk.goBudgetMe.Services;
 using jsk.goBudgetMe.Tests;
 
 using AutoMapper;
+using Microsoft.AspNet.Mvc.Razor;
 
 namespace jsk.goBudgetMe
 {
@@ -109,6 +114,17 @@ namespace jsk.goBudgetMe
 
             app.UseStaticFiles();
             app.UseIdentity();
+
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = Configuration["AppSecrets:Facebook:Id"],
+                AppSecret = Configuration["AppSecrets:Facebook:SecretId"]
+            });
+            app.UseGoogleAuthentication(new GoogleOptions() 
+            {
+                ClientId = Configuration["AppSecrets:Google:Id"],
+                ClientSecret = Configuration["AppSecrets:Google:SecretId"]
+            });
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 

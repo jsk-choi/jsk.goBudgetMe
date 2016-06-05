@@ -1,7 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "About - ";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<style>
+    h3 {
+        line-height:1.2em;
+    }
+    ul li {
+        line-height:2em;
+    }
+</style>
+
+<h3>This is a simple application to test some of the new features in ASP.NET 5, Entity Framework 7, ASP.NET Identity 3, amongst others.</h3>
+<h3>Technologies:</h3>
+<ul>
+    <li>Back-end: SQL Server</li>
+    <li>Data access: Entity Framework 7, code-first with migrations</li>
+    <li>Middle/Front-end: ASP.NET 5 MVC 6</li>
+</ul>
+<h3>Next iteration will be recreating the front-end using React.JS as a SPA (single page application)</h3>
+<h3>Additional features to be included in future release:</h3>
+<ul>
+    <li>Persist start/end dates across sessions</li>
+    <li>Repeating transactions (such as future bills/recurring payments)</li>
+    <li>Mass export/import from spreadsheet files</li>
+    <li>Friendlier display of debits/credits, instead of negative/positive numbers</li>
+    <li>Color coding of regular transactions</li>
+    <li>Mark transaction posted from main view</li>
+    <li>Drag/drop reordering</li>
+</ul>

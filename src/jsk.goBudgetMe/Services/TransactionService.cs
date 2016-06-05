@@ -33,6 +33,8 @@ namespace jsk.goBudgetMe.Services
                 IEnumerable<TransactionDto> trans = new List<TransactionDto>();
                 var User = _accountService.CurrentUser;
 
+                if (User == null) return null;
+
                 var sql = @"exec spGetTransaction @userId = {0}, @startDate = {1}, @endDate = {2};";
                 if (startDate != minDt && endDate != minDt)
                 {
@@ -75,8 +77,8 @@ namespace jsk.goBudgetMe.Services
                     Where(x => 
                         x.User.Id == _accountService.CurrentUser.Id && 
                         x.UniqueId == UniqueId
-                    ).FirstOrDefault();
-                return await Task.Run(() => tran);
+                    );
+                return await Task.Run(() => tran.FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -88,8 +90,7 @@ namespace jsk.goBudgetMe.Services
             try
             {
                 Transaction.User = _accountService.CurrentUser;
-
-                if (_appCtx.Transactions.Any(x => x.UniqueId == Transaction.UniqueId))
+                if (_appCtx.Transactions.Where(x => x.UniqueId == Transaction.UniqueId).Any())
                 {
                     _appCtx.Transactions.Update(Transaction);
                 }
