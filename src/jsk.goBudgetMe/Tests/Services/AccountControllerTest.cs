@@ -76,27 +76,6 @@ namespace jsk.goBudgetMe.Tests.Controllers
             Assert.Equal(uid, uid);
             Assert.Equal(true, result.Succeeded);
             Assert.Equal("test@test.test", _appCtx.Users.FirstOrDefault().Email);
-
-            Console.WriteLine("durr face");
-
-
-
-            //var tran = new Transaction
-            //{
-            //    User = _appCtx.Users.FirstOrDefault(),
-            //    TransactionDate = DateTime.Now,
-            //    TransactionDesc = "test",
-            //    Amount = 1.99m,
-            //    UniqueId = _util.UniqueId
-            //};
-
-            //var oiwjef = _transactionService.AddUpdateAsync(tran);
-            //Assert.Equal(null, oiwjef);
-
-
-
-            //Assert.Equal("test", _transactionService.AddUpdateAsync(tran).Result.TransactionDesc);
-            //Assert.Equal(1, _transactionService.GetAsync(DateTime.MinValue, DateTime.MaxValue).Result.Count());
         }
     }
 }
