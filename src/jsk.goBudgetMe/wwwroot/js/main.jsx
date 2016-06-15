@@ -1,5 +1,7 @@
 ﻿/// <reference path="~/_references.js" />
 
+const durrface = 'durr';
+
 var GbmApp = React.createClass({
     loadTranFromServer: function () {
         console.log(this.props.url);
@@ -19,10 +21,10 @@ var GbmApp = React.createClass({
     },
     handleTransactionSubmit: function (tran) {
     },
-    getInitialState: function () {
+    getInitialState () {
         return { data: [] };
     },
-    componentWillMount: function () {
+    componentWillMount () {
         console.log('will mount');
     },
     componentDidMount: function () {
