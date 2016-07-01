@@ -3,12 +3,11 @@
 module.exports = {
     entry: [
         "babel-polyfill",
-        //"./wwwroot/js/site.jsx",
-        "./wwwroot/js/main.jsx",
+        "./wwwroot/js/index.jsx",
     ],
     output: {
         path: "./wwwroot/dist",
-        filename: "[name].js"
+        filename: "index.js"
     },
     devServer: {
         contentBase: ".",
@@ -18,9 +17,9 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
                 query: {
                     presets: ['es2015', 'react']
                 }

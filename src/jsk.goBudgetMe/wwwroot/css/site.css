@@ -20,22 +20,25 @@ textarea {
 .carousel-caption {
     z-index: 10 !important;
 }
+
     .carousel-caption p {
         font-size: 20px;
         line-height: 1.4;
     }
 
 .red {
-    border:1px solid red;
+    border: 1px solid red;
 }
+
 .green {
-    border:1px solid green;
+    border: 1px solid green;
 }
+
 .add-button {
-    margin-left:0;
-    padding-left:0;
-    font-size:2.5em;
-    color:#ee3d00;
+    margin-left: 0;
+    padding-left: 0;
+    font-size: 2.5em;
+    color: #ee3d00;
 }
 
 @media (min-width: 768px) {
@@ -44,19 +47,58 @@ textarea {
     }
 }
 
+.dtbox {
+    min-width: 150px;
+    max-width: 200px;
+    padding: 0;
+}
+
+.edit-save {
+    color: #3367b0;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+    .edit-save:hover {
+        color: #6d8db9;
+    }
+
+.posted {
+    border: 1px solid #9b9b9b;
+    border-radius:3px;
+    background-repeat: no-repeat;
+    background-size: 19px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+    .posted.green-check {
+        background-image: url('../images/check.png');
+        background-color: #d6ffd6;
+    }
+
+    .posted.red-x {
+        background-image: url('../images/x.png');
+        background-color: #cfcfcf;
+    }
+
 .oauth-button {
     width: 60px;
     height: 60px;
-    background-repeat:no-repeat;
-    margin:2px 12px;
-    border:1px solid #eaeaea;
+    background-repeat: no-repeat;
+    margin: 2px 12px;
+    border: 1px solid #eaeaea;
 }
+
     .oauth-button:hover {
-    border:1px solid #878787;
+        border: 1px solid #878787;
     }
+
     .oauth-button.facebook {
         background-image: url('../../images/oauth-facebook.png');
     }
+
     .oauth-button.google {
         background-image: url('../../images/oauth-google.png');
     }
