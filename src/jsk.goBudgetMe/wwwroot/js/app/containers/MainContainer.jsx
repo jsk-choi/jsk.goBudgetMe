@@ -24,8 +24,8 @@ const MainContainer = React.createClass({
         //StartDate.setDate(StartDate.getDate() - 3);
         //EndDate.setMonth(EndDate.getMonth() + 1);
 
-        StartDate.setDate(StartDate.getDate() - 3);
-        EndDate.setDate(EndDate.getDate() + 3);
+        StartDate.setDate(StartDate.getDate() - 7);
+        EndDate.setMonth(EndDate.getMonth() + 2);
 
         return {
             StartDate,
