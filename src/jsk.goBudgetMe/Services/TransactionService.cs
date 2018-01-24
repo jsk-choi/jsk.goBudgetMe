@@ -85,6 +85,22 @@ namespace jsk.goBudgetMe.Services
                 throw ex;
             }
         }
+        public async Task<Transaction> GetItemAsync(int TransactionId)
+        {
+            try
+            {
+                var tran = _appCtx.Transactions.
+                    Where(x =>
+                        x.User.Id == _accountService.CurrentUser.Id &&
+                        x.TransactionId == TransactionId
+                    );
+                return await Task.Run(() => tran.FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<Transaction> AddUpdateAsync(Transaction Transaction)
         {
             try

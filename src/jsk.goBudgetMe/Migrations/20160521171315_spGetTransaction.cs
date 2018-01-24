@@ -24,10 +24,13 @@ WITH UserTran AS (
 )
 , UserTranSum AS (
 	SELECT TransactionId, UniqueId, TransactionDate, TransactionDesc, Amount, Posted,
-		SUM(Amount) OVER (PARTITION BY UserId ORDER BY TransactionDate) AS Balance
+		SUM(Amount) OVER (PARTITION BY UserId ORDER BY TransactionDate, TransactionId) AS Balance
 	FROM UserTran
 )
-SELECT * FROM UserTranSum WHERE TransactionDate BETWEEN @startDate AND @endDate;
+SELECT * 
+FROM UserTranSum 
+WHERE TransactionDate BETWEEN @startDate AND @endDate
+ORDER BY TransactionDate, TransactionId;
 
 RETURN 0
 ";

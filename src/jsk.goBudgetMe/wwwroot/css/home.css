@@ -12,8 +12,8 @@ p {
 }
 
 /*
-    Generic Styling, for Desktops/Laptops
-    */
+Generic Styling, for Desktops/Laptops
+*/
 table {
     width: 100%;
     border-collapse: collapse;
@@ -47,12 +47,12 @@ td, th {
     }
 
 /*
-    Max width before this PARTICULAR table gets nasty
-    This query will take effect for any screen smaller than 760px
-    and also iPads specifically.
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
 
-    @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {*/
-@@media only screen and (max-width: 760px) {
+@@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {*/
+@media only screen and (max-width: 760px) {
     /* Force table to not be like tables anymore */
     table, thead, tbody, th, td, tr {
         display: block;
@@ -87,8 +87,8 @@ td, th {
             white-space: nowrap;
         }
         /*
-        Label the data
-        */
+    Label the data
+    */
         td:nth-of-type(1):before,
         td:nth-of-type(2):before,
         td:nth-of-type(3):before,
@@ -127,8 +127,8 @@ td, th {
 }
 
 /* Smartphones (portrait and landscape) -----------
-    @@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
-@@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     body {
         padding: 30px 0;
         margin: 0;
@@ -136,8 +136,8 @@ td, th {
 }
 
 /* iPads (portrait and landscape) -----------
-    @@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {*/
-@@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {*/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     body {
         padding: 30px 0;
     }
